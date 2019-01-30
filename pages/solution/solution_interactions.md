@@ -23,7 +23,7 @@ The core of the triage journey is the `ServiceDefinition`.$evaluate operation in
 
 This interaction is expected to be repeated multiple times during the triage journey as the EMS presents responses to CDSS questions until an end result is reached. 
 
-The `GuidanceResponse` provides a container for the status of the response and includes a reference to `Questionnaire` resources, assertions and results.
+The `GuidanceResponse` provides a container for the status of the response and includes reference to `Questionnaire` resources, assertions and results.
 
 [![Diagram showing UEC Digital Integration Programme invoke decision support interaction](images/solution/invoke-decision-support.png)](/api_get_service_definition.html)
 
@@ -44,7 +44,7 @@ View the [Get Questionnaire](/api_get_questionnaire.html) section for more infor
 
 
 ### ServiceDefinition.$evaluate including response ###
-The EMS logs the response to the first question and invokes another `ServiceDefinition`.$evaluate operation which includes the response to the first question.
+The EMS logs the response to the first question and includes this within another `ServiceDefinition`.$evaluate operation.
 
 The CDSS creates an assertion of the observation submitted by the user and the CDSS determines there is not enough information to arrive at a result. Another question is returned to be answered.
  
@@ -65,7 +65,7 @@ The EMS repeats the Questionnaire and Ask question loop.
 
 View the [Get Questionnaire](/api_get_questionnaire.html) section for more information.
 
-### ServiceDefinition.$evaluate including observation resource and response###
+### ServiceDefinition.$evaluate including observation resource and response ###
 The EMS logs the response from the User and again invokes a `ServiceDefinition`.$evaluate operation. This operation now contains the response and any previous assertions for the CDSS to evaluate.
 
 The CDSS creates another assertion from the questionnaire response and determines a result can be provided. The result is sent to the EMS within the `GuidanceResponse`.
