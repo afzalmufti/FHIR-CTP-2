@@ -47,11 +47,9 @@ View the [Get Questionnaire](/api_get_questionnaire.html) section for more infor
 
 The CDSS evaluates the returned `QuestionnaireResponse` and uses its content to create an assertion which is carried within an `Observation` resource.
 
-The CDSS evaluates the observation submitted by the user and uses this to create an assertion.
-
-The CDSS determines whether there is enough information to arrive at a disposition. If not, another question is returned to be answered.
+The CDSS determines whether there is enough information to arrive at a disposition. If not, another `Questionnaire` is populated with the next question to be answered.
  
-The `GuidanceResponse` returned to the EMS now has the asserted observation and the next question for the EMS to display.
+The `GuidanceResponse` returned to the EMS now contains references to both an `Observation` and a `Questionnaire` resource.
 
 ![Diagram showing UEC Digital Integration Programme servicedefinition evaluate response interaction](images/solution/assertion-interaction.png)
 
@@ -59,9 +57,9 @@ View the [ServiceDefinition](/api_post_service_definition.html) and [GuidanceRes
 
 
 ### Arriving at a disposition ###
-The EMS invokes a `ServiceDefinition`.$evaluate operation containing the `questionnaireResponse` and any previous assertions for the CDSS to evaluate.
+The EMS invokes a `ServiceDefinition`.$evaluate operation referencing a `QuestionnaireResponse` and any previous `Observation` resources for the CDSS to evaluate.
 
-The CDSS creates another assertion from the `QuestionnaireResponse` and determines a disposition can be provided.
+The CDSS creates another assertion from the `QuestionnaireResponse` and determines a disposition or result can be provided.
 
 The disposition is sent to the EMS within the `GuidanceResponse` and the EMS displays the disposition to the User.
 
